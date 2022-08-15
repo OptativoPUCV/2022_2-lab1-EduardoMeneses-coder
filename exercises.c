@@ -37,7 +37,7 @@ Utilice la función sumaN.
 */
 
 void sumaNultimos(int a[], int n, int m, int * suma) {
-
+ *suma=sumaN(a,n)-sumaN(a,n-m);
 }
 
 /*
@@ -55,6 +55,12 @@ typedef struct {
 
 
 Persona* crearPersona(char nombre[], char rut[], int edad) {
+  Persona* p = (Persona*)malloc(sizeof(Persona));
+  strcpy(p->nombre,nombre);
+  strcpy(p->rut,rut);
+  p->edad=edad;
+  return p;
+  
    return NULL;
 }
 
@@ -72,6 +78,9 @@ typedef struct {
 } Vector;
 
 Vector * crearVector(int n) {
+   Vector* v = (Vector)malloc(sizeof(Vector));
+  v->datos=(int) malloc (sizeof(int)*n);
+  v->capacidad=n;
    return NULL;
 }
 
@@ -82,6 +91,7 @@ la cual asigna el valor a la posición i del vector v.
 */
 void asignarValor(Vector * v, int i, int valor) {
 
+    v->datos[i]=valor;
 }
 
 /*
@@ -90,6 +100,8 @@ Programe la función int obtenerValor(Vector * v, int i),
 la cual retorna el valor en la posición i del vector v.
 */
 int obtenerValor(Vector * v, int i) {
+
+   return v->datos[i];
    return 0;
 }
 
@@ -100,6 +112,10 @@ actualiza el vector `c` con el resultado de la suma.
 */
 void sumaV(Vector * a, Vector * b, Vector * c) {
 
+  int n=c->capacidad;
+  for(int i=0; i<n;i++){
+    c->datos[i]=a->datos[i]+b->datos[i];
+  
 }
 
 /*
@@ -108,5 +124,7 @@ Use las operaciones implementadas de vectores para
 sumar (a1,a2)+(b1+b2). Almacene el resultado en el vector c.
 */
 void sumaV2(int a1, int a2, int b1, int b2, Vector *c){
-
+  
+  c->datos[0]=a1+b1; //los datos x de los dos vectores seran sumados
+  c->datos[1]=a2+b2; // los datos y de los dos vec sumados
 }
